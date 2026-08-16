@@ -2,17 +2,18 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>DEJA FORN - Verificação</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             min-height: 100vh;
             background-color: #0a0a1a;
             background-image: url('/fundo.png');
@@ -24,9 +25,9 @@
             align-items: center;
             justify-content: center;
             position: relative;
+            overflow-x: hidden;
         }
 
-        /* Overlay escuro para legibilidade */
         body::before {
             content: '';
             position: fixed;
@@ -35,13 +36,12 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(135deg, 
-                rgba(10, 10, 26, 0.92) 0%, 
-                rgba(30, 10, 50, 0.88) 50%, 
-                rgba(10, 10, 26, 0.92) 100%);
+                rgba(10, 10, 26, 0.93) 0%, 
+                rgba(30, 10, 50, 0.89) 50%, 
+                rgba(10, 10, 26, 0.93) 100%);
             z-index: 0;
         }
 
-        /* Partículas animadas */
         .particles {
             position: fixed;
             top: 0;
@@ -75,8 +75,8 @@
             position: relative;
             z-index: 10;
             width: 100%;
-            max-width: 480px;
-            padding: 20px;
+            max-width: 460px;
+            padding: 15px;
         }
 
         .modal {
@@ -84,8 +84,8 @@
                 rgba(20, 15, 45, 0.96), 
                 rgba(10, 8, 28, 0.98));
             border: 2px solid #a855f7;
-            border-radius: 24px;
-            padding: 45px 35px;
+            border-radius: 22px;
+            padding: 35px 25px;
             box-shadow: 
                 0 0 40px rgba(168, 85, 247, 0.4),
                 0 0 80px rgba(168, 85, 247, 0.15),
@@ -107,19 +107,19 @@
 
         .logo {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .logo-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 15px;
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 12px;
             background: linear-gradient(135deg, #a855f7, #7c3aed);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 40px;
+            font-size: 35px;
             box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
             animation: pulse 2s infinite;
         }
@@ -131,26 +131,26 @@
 
         .logo h1 {
             color: #fff;
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 800;
             letter-spacing: 4px;
             text-shadow: 0 0 20px rgba(168, 85, 247, 0.8);
-            margin-bottom: 5px;
+            margin-bottom: 4px;
         }
 
         .logo p {
             color: #c084fc;
-            font-size: 12px;
+            font-size: 11px;
             letter-spacing: 3px;
             text-transform: uppercase;
         }
 
         .user-info {
             text-align: center;
-            margin-bottom: 25px;
-            padding: 15px;
+            margin-bottom: 20px;
+            padding: 12px;
             background: rgba(168, 85, 247, 0.1);
-            border-radius: 12px;
+            border-radius: 10px;
             border: 1px solid rgba(168, 85, 247, 0.3);
             display: none;
         }
@@ -167,7 +167,7 @@
 
         .username {
             color: #fff;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
         }
 
@@ -179,19 +179,19 @@
             background: rgba(239, 68, 68, 0.15);
             border: 1px solid rgba(239, 68, 68, 0.4);
             color: #ef4444;
-            padding: 15px;
+            padding: 12px;
             border-radius: 10px;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             display: none;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .error-msg.show { display: block; }
 
         .success-check {
             text-align: center;
-            padding: 20px;
+            padding: 15px 10px 5px;
             display: none;
         }
 
@@ -202,11 +202,11 @@
 
         @keyframes successPop {
             0% { transform: scale(0); }
-            50% { transform: scale(1.2); }
+            50% { transform: scale(1.15); }
             100% { transform: scale(1); }
         }
 
-        .success-check svg { width: 80px; height: 80px; }
+        .success-check svg { width: 70px; height: 70px; }
 
         .success-check svg path {
             stroke-dasharray: 100;
@@ -218,11 +218,19 @@
             to { stroke-dashoffset: 0; }
         }
 
-        .progress-container { margin-bottom: 25px; }
+        .success-text {
+            color: #22c55e;
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 10px;
+            text-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
+        }
+
+        .progress-container { margin-bottom: 20px; }
 
         .progress-bar {
             width: 100%;
-            height: 14px;
+            height: 12px;
             background: rgba(168, 85, 247, 0.12);
             border-radius: 10px;
             overflow: hidden;
@@ -247,31 +255,31 @@
 
         .progress-percent {
             color: #a855f7;
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 800;
             text-align: center;
-            margin-top: 12px;
+            margin-top: 10px;
             text-shadow: 0 0 15px rgba(168, 85, 247, 0.6);
         }
 
         .progress-text {
             text-align: center;
-            margin-top: 8px;
+            margin-top: 6px;
             color: rgba(255, 255, 255, 0.8);
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
-        .steps { margin-top: 20px; }
+        .steps { margin-top: 18px; }
 
         .step {
             display: flex;
             align-items: center;
-            padding: 12px 15px;
-            margin-bottom: 8px;
+            padding: 10px 12px;
+            margin-bottom: 6px;
             background: rgba(168, 85, 247, 0.04);
-            border-radius: 10px;
+            border-radius: 8px;
             border: 1px solid transparent;
             transition: all 0.3s ease;
         }
@@ -288,16 +296,17 @@
         }
 
         .step-icon {
-            width: 28px;
-            height: 28px;
+            width: 26px;
+            height: 26px;
             border-radius: 50%;
             background: rgba(168, 85, 247, 0.15);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 12px;
-            font-size: 13px;
+            margin-right: 10px;
+            font-size: 12px;
             transition: all 0.3s ease;
+            flex-shrink: 0;
         }
 
         .step.active .step-icon {
@@ -316,7 +325,7 @@
 
         .step-text {
             color: rgba(255, 255, 255, 0.4);
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             transition: all 0.3s ease;
         }
@@ -327,7 +336,7 @@
         .return-btn {
             width: 100%;
             padding: 16px;
-            margin-top: 25px;
+            margin-top: 20px;
             background: linear-gradient(135deg, #a855f7, #7c3aed);
             color: #fff;
             border: none;
@@ -336,10 +345,11 @@
             font-weight: 700;
             letter-spacing: 1px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             box-shadow: 0 5px 20px rgba(168, 85, 247, 0.4);
             display: none;
             text-transform: uppercase;
+            touch-action: manipulation;
         }
 
         .return-btn.show {
@@ -352,18 +362,28 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .return-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(168, 85, 247, 0.6);
+        .return-btn:active {
+            transform: scale(0.97);
+            box-shadow: 0 3px 15px rgba(168, 85, 247, 0.5);
         }
 
-        .return-btn:active { transform: translateY(0); }
+        .alt-link {
+            display: none;
+            text-align: center;
+            margin-top: 12px;
+            color: rgba(168, 85, 247, 0.7);
+            font-size: 12px;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .alt-link.show { display: block; }
 
         .footer {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 18px;
             color: rgba(255, 255, 255, 0.25);
-            font-size: 11px;
+            font-size: 10px;
             letter-spacing: 1px;
         }
 
@@ -394,6 +414,7 @@
                     <circle cx="40" cy="40" r="35" stroke="#22c55e" stroke-width="4"/>
                     <path d="M25 40 L35 50 L55 30" stroke="#22c55e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
+                <div class="success-text">Verificação Concluída!</div>
             </div>
 
             <div class="progress-container" id="progressContainer">
@@ -426,6 +447,10 @@
             <button class="return-btn" id="returnBtn" onclick="voltarDiscord()">
                 ← Voltar para o Discord
             </button>
+            
+            <a class="alt-link" id="altLink" href="https://discord.com/channels/@me" target="_blank">
+                Abrir Discord no navegador
+            </a>
 
             <div class="footer">
                 © 2024 <span>DEJA FORN</span> - Todos os direitos reservados
@@ -437,7 +462,7 @@
         // Cria partículas
         function criarParticulas() {
             const container = document.getElementById('particles');
-            for (let i = 0; i < 25; i++) {
+            for (let i = 0; i < 20; i++) {
                 const p = document.createElement('div');
                 p.className = 'particle';
                 p.style.left = Math.random() * 100 + '%';
@@ -460,6 +485,7 @@
             percent: document.getElementById('progressPercent'),
             text: document.getElementById('progressText'),
             btn: document.getElementById('returnBtn'),
+            altLink: document.getElementById('altLink'),
             userInfo: document.getElementById('userInfo'),
             userDisplay: document.getElementById('usernameDisplay'),
             error: document.getElementById('errorMsg'),
@@ -468,12 +494,12 @@
             steps: document.getElementById('stepsContainer')
         };
 
-        // Etapas da verificação
+        // Etapas
         const etapas = [
-            { id: 'step1', texto: 'Carregando', duracao: 1500, inicio: 0, fim: 25 },
-            { id: 'step2', texto: 'Buscando', duracao: 2000, inicio: 25, fim: 55 },
-            { id: 'step3', texto: 'Verificando', duracao: 2500, inicio: 55, fim: 90 },
-            { id: 'step4', texto: 'Verificado', duracao: 1000, inicio: 90, fim: 100 }
+            { id: 'step1', texto: 'Carregando', duracao: 1200, inicio: 0, fim: 25 },
+            { id: 'step2', texto: 'Buscando', duracao: 1800, inicio: 25, fim: 55 },
+            { id: 'step3', texto: 'Verificando', duracao: 2200, inicio: 55, fim: 90 },
+            { id: 'step4', texto: 'Verificado', duracao: 800, inicio: 90, fim: 100 }
         ];
 
         function setProgress(p) {
@@ -493,24 +519,74 @@
             step.querySelector('.step-icon').textContent = '✓';
         }
 
+        // ═══════════════════════════════════════
+        // ✅ FUNÇÃO CORRIGIDA: Voltar para Discord
+        // Várias estratégias para garantir funcionamento
+        // ═══════════════════════════════════════
+        function voltarDiscord() {
+            console.log('🔄 Tentando abrir o Discord...');
+
+            // Tenta VÁRIOS deep links diferentes
+            const links = [
+                'discord://-/channels/@me',
+                'discord://discord.com/channels/@me',
+                'discord://guilds',
+                'https://discord.com/channels/@me'
+            ];
+
+            // Estratégia 1: Tenta abrir o app
+            let tentou = false;
+            
+            // Para Android/iOS - tenta o deep link primeiro
+            for (let i = 0; i < links.length - 1; i++) {
+                try {
+                    const iframe = document.createElement('iframe');
+                    iframe.style.display = 'none';
+                    iframe.src = links[i];
+                    document.body.appendChild(iframe);
+                    setTimeout(() => iframe.remove(), 1000);
+                    tentou = true;
+                    console.log(`📱 Tentativa ${i + 1}: ${links[i]}`);
+                } catch (e) {
+                    console.log('Erro na tentativa:', e);
+                }
+            }
+
+            // Estratégia 2: Redirecionamento direto
+            setTimeout(() => {
+                window.location.href = links[0];
+            }, 100);
+
+            // Estratégia 3: Se não abrir em 2 segundos, abre no navegador
+            setTimeout(() => {
+                window.open(links[links.length - 1], '_blank');
+                el.altLink.classList.add('show');
+            }, 2000);
+
+            // Mostra link alternativo imediatamente
+            el.altLink.classList.add('show');
+        }
+
         async function iniciarVerificacao() {
             if (error) {
                 const msgs = {
-                    'no_code': 'Código de autorização não encontrado. Tente novamente.',
-                    'oauth_failed': 'Falha na autenticação com o Discord. Tente novamente.'
+                    'no_code': 'Código de autorização não encontrado. Volte ao Discord e tente novamente.',
+                    'oauth_failed': 'Falha na autenticação. Volte ao Discord e tente novamente.'
                 };
                 el.error.textContent = '❌ ' + (msgs[error] || 'Erro desconhecido. Tente novamente.');
                 el.error.classList.add('show');
                 el.btn.classList.add('show');
+                el.altLink.classList.add('show');
                 el.progress.style.display = 'none';
                 el.steps.style.display = 'none';
                 return;
             }
 
             if (!userId) {
-                el.error.textContent = '❌ Usuário não identificado. Inicie a verificação através do bot no Discord.';
+                el.error.textContent = '❌ Usuário não identificado. Volte ao Discord e clique em VERIFICA-SE novamente.';
                 el.error.classList.add('show');
                 el.btn.classList.add('show');
+                el.altLink.classList.add('show');
                 el.progress.style.display = 'none';
                 el.steps.style.display = 'none';
                 return;
@@ -528,7 +604,7 @@
                 setActive(etapa.id);
                 el.text.textContent = etapa.texto + '...';
 
-                const passos = 30;
+                const passos = 25;
                 const intervalo = etapa.duracao / passos;
                 const inc = (etapa.fim - etapa.inicio) / passos;
 
@@ -543,15 +619,17 @@
             setProgress(100);
             el.text.textContent = 'Verificação concluída!';
 
-            // Chama API para dar cargo
+            // Chama API para dar o cargo
             try {
-                await fetch('/api/complete-verification', {
+                const resposta = await fetch('/api/complete-verification', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ userId })
                 });
+                const dados = await resposta.json();
+                console.log('✅ API Resposta:', dados);
             } catch (e) {
-                console.log('Erro API:', e);
+                console.log('⚠️ Erro na API:', e.message);
             }
 
             // Mostra sucesso
@@ -560,15 +638,11 @@
                 el.steps.style.display = 'none';
                 el.success.classList.add('show');
                 el.btn.classList.add('show');
+                el.altLink.classList.add('show');
+                
+                // Tenta abrir o Discord AUTOMATICAMENTE
+                setTimeout(voltarDiscord, 800);
             }, 500);
-        }
-
-        function voltarDiscord() {
-            // Tenta abrir o app do Discord
-            window.location.href = 'discord://-/';
-            setTimeout(() => {
-                window.close();
-            }, 1500);
         }
 
         // Inicia
