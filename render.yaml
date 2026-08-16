@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: deja-auth2-com
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: CLIENT_ID
+        sync: false
+      - key: CLIENT_SECRET
+        sync: false
+      - key: GUILD_ID
+        sync: false
+      - key: REDIRECT_URI
+        value: https://deja-auth2-com.onrender.com/callback
+      - key: SITE_URL
+        value: https://deja-auth2-com.onrender.com
+      - key: PORT
+        value: 3000

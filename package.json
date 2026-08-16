@@ -1,0 +1,20 @@
+{
+  "name": "deja-auth2-bot",
+  "version": "2.0.0",
+  "description": "Bot de Verificação Discord DEJA FORN - Completo e Funcional",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.15.3",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
+    "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
